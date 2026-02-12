@@ -11,9 +11,9 @@
 # print (n, type(n))
 
 # Required minimum values
-req_education = 12
-req_height = 5.7
-req_age = 18
+# req_education = 12
+# req_height = 5.7
+# req_age = 18
 
 # User input
 # education = float(input("Enter education (in years): "))
