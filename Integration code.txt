@@ -1,0 +1,112 @@
+SandboxGetURL
+undefined
+Token: Token: a1a9ac84-11be-3389-982c-dd6697e1f344
+
+SandboxPostURL
+undefined
+Token: Sandbox Securirty Token: a1a9ac84-11be-3389-982c-dd6697e1f344
+
+<am:fault xmlns:am="http://wso2.org/apimanager">
+<am:code>405</am:code>
+<am:type>Status report</am:type>
+<am:message>Runtime Error</am:message>
+<am:description>Method not allowed for given API resource</am:description>
+</am:fault>
+
+
+json
+
+{
+  "invoiceType": "Sale Invoice",
+  "invoiceDate": "yyyy-MM-dd",
+  "sellerNTNCNIC": "0000000000000",
+  "sellerBusinessName": "Your Business Name",
+  "sellerProvince": "Seller Province",
+  "sellerAddress": "Seller Address",
+  "buyerNTNCNIC": "0000000000000",
+  "buyerBusinessName": "Buyer Business Name",
+  "buyerProvince": "Buyer Province",
+  "buyerAddress": "Buyer Address",
+  "buyerRegistrationType": "Registered",
+  "invoiceRefNo": "",
+  "scenarioId": "SN000",
+  "items": [
+    {
+      "hsCode": "0000.0000",
+      "productDescription": "",
+      "rate": "0%",
+      "uoM": "",
+      "quantity": 0,
+      "totalValues": 0,
+      "valueSalesExcludingST": 0,
+      "fixedNotifiedValueOrRetailPrice": 0,
+      "salesTaxApplicable": 0,
+      "salesTaxWithheldAtSource": 0,
+      "extraTax": "",
+      "furtherTax": 0,
+      "sroScheduleNo": "",
+      "fedPayable": 0,
+      "discount": 0,
+      "saleType": "",
+      "sroItemSerialNo": ""
+    }
+  ]
+}
+
+
+
+
+
+
+
+using System.Net.Http;
+
+using Newtonsoft.Json;
+
+ 
+
+HttpClient client = new HttpClient();
+
+client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "your token");
+
+StringContent content = new StringContent(JsonConvert.SerializeObject(objinvoice), Encoding.UTF8, "application/json");
+
+ 
+
+HttpResponseMessage response = client.PostAsync("https://gw.fbr.gov.pk/di_data/v1/di/postinvoicedata_sb", content).Result;
+
+ 
+
+if (response.IsSuccessStatusCode)
+
+{
+
+   Console.WriteLine("Response from API:");
+
+    Console.WriteLine("-------------------------------");
+
+    Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+
+}
+
+
+
+
+
+
+
+
+
+Sr. No.	Scenario Code	Scenario Description	Status
+1	SN001	Goods at Standard Rate to Registered Buyers	Pending
+2	SN002	Goods at Standard Rate to Unregistered Buyers	Pending
+3	SN005	Reduced Rate Sale	Pending
+4	SN006	Exempt Goods Sale	Pending
+5	SN007	Zero Rated Sale	Pending
+6	SN008	Sale of 3rd Schedule Goods	Pending
+7	SN016	Processing / Conversion of Goods	Pending
+8	SN017	Sale of Goods where FED is Charged in ST Mode	Pending
+9	SN024	Goods Sold that are Listed in SRO 297(1)/2023	Pending
+10	SN026	Sale to End Consumer by Retailers	Pending
+11	SN027	Sale to End Consumer by Retailers	Pending
+12	SN028	Sale to End Consumer by Retailers	Pending
